@@ -1,0 +1,19 @@
+{
+  "name": "messenger-webhook",
+  "version": "1.0.0",
+  "description": "\"My First Messenger Bot. Just Playing aroung pal :)\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "messenger"
+  ],
+  "author": "\"jarvis\"",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
