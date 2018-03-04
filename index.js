@@ -11,6 +11,7 @@ const
     extended:true
   }));
 
+app.use(express.static(__dirname+'/public'));
 //---------------------------------------------------------------
 //some real quick stuff
 
@@ -217,7 +218,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                 {
                 "title": "Milan's Facebook Profile",
                 "subtitle": "Be my friend buddy :)",
-                "image_url": "https://drive.google.com/file/d/1IC4NLQ_uGfHCp0leVhreOinkvnEc8Mzr/view?usp=sharing",
+                "image_url": "/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -230,7 +231,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Twitter Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "https://drive.google.com/file/d/1IC4NLQ_uGfHCp0leVhreOinkvnEc8Mzr/view?usp=sharing",
+                "image_url": "/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -243,7 +244,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Instagram Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "https://drive.google.com/file/d/1IC4NLQ_uGfHCp0leVhreOinkvnEc8Mzr/view?usp=sharing",
+                "image_url": "/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -256,7 +257,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's LinkedIn Profile",
                 "subtitle": "Connect With Me :) ",
-                "image_url": "https://www.facebook.com/photo.php?fbid=635791393289005&l=b5b72610dd",
+                "image_url": "/images/mypic2.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -269,7 +270,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Quora Profile",
                 "subtitle": "Ask me :)",
-                "image_url": "https://drive.google.com/file/d/0BzCLIO-wlP20YnpuOVRTVlcwcWF2OUFOMFBiOGk4Wl9vNlZR/view?usp=sharing",
+                "image_url": "/images/mypic3.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
