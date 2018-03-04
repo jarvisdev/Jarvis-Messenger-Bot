@@ -99,7 +99,7 @@ app.post('/webhook', (req, res) => {
 function handleMessage(event) {
   var sender_psid=event.sender.id;
   var received_message=event.message;
-  console.log(JSON.stringify(message));
+  console.log(JSON.stringify(received_message));
 	var response;
 
   // Check if the message contains text
