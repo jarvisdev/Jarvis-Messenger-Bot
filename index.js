@@ -52,9 +52,9 @@ app.get('/webhook', (req, res) => {
 
 app.get('/',(req,res)=>{
 
-  res.writeHead('content-type','text/plain');
+  //res.writeHead('content-type','text/plain');
   res.write("hello");
-  res.end();
+  //res.end();
 
 });
 
