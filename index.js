@@ -109,7 +109,7 @@ function handleMessage(event) {
       var text=received_message.text;
       // Create the payload for a basic text message
       typingIndicatorEnable(sender_psid);
-      setTimeout(typingIndicatorDisable,4000);
+      setTimeout(typingIndicatorDisable,4000,sender_psid);
       sendGenericSocialTemplateCarousel(sender_psid);
   }
   else if(received_message.attachments){
