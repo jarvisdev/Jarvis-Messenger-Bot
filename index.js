@@ -7,8 +7,8 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
-  spp.use(bodyParser.urlencoded({
-    extended:true;
+  app.use(bodyParser.urlencoded({
+    extended:true
   }));
 
 //---------------------------------------------------------------
@@ -69,7 +69,7 @@ app.post('/webhook', (req, res) => {
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function(entry) {
 
-      entry.messaging.forEach(event){
+      entry.messaging.forEach(function(event){
 
         if (event.message) {
         handleMessage(event);        
@@ -81,12 +81,13 @@ app.post('/webhook', (req, res) => {
             console.log("unknown event "+event);
         } 
 
-      }
+      });
 		  
     });
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
-  } else {
+  }
+ else {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
@@ -221,10 +222,10 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                   {
                     "type": "web_url",
                     "title": "View Profile",
-                    "url": social[0],
-                  },
-                ],
-              }
+                    "url": social[0]
+                  }
+                ]
+              },
 
               {
                 "title": "Milan's Twitter Profile",
@@ -234,10 +235,10 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                   {
                     "type": "web_url",
                     "title": "View Profile",
-                    "url": social[2],
-                  },
-                ],
-              }
+                    "url": social[2]
+                  }
+                ]
+              },
 
               {
                 "title": "Milan's Instagram Profile",
@@ -247,10 +248,10 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                   {
                     "type": "web_url",
                     "title": "View Profile",
-                    "url": social[1],
-                  },
-                ],
-              }
+                    "url": social[1]
+                  }
+                ]
+              },
 
               {
                 "title": "Milan's LinkedIn Profile",
@@ -260,10 +261,10 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                   {
                     "type": "web_url",
                     "title": "View Profile",
-                    "url": social[3],
-                  },
-                ],
-              }
+                    "url": social[3]
+                  }
+                ]
+              },
 
               {
                 "title": "Milan's Quora Profile",
@@ -273,9 +274,9 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                   {
                     "type": "web_url",
                     "title": "View Profile",
-                    "url": social[4],
-                  },
-                ],
+                    "url": social[4]
+                  }
+                ]
               }
 
             ]
@@ -317,7 +318,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
                     "url": coding[1],
                   },
                 ],
-              }
+              },
 
               {
                 "title": "Milan's Codechef Profile",
@@ -330,7 +331,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
                     "url": coding[0],
                   },
                 ],
-              }
+              },
 
               {
                 "title": "Milan's hackerearth Profile",
@@ -343,7 +344,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
                     "url": coding[3],
                   },
                 ],
-              }
+              },
 
               {
                 "title": "Milan's Hackerrank Profile",
@@ -356,7 +357,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
                     "url": coding[2],
                   },
                 ],
-              }
+              },
 
               {
                 "title": "Milan's Github Profile",
@@ -394,7 +395,7 @@ function sendVideo(sender_psid,video_url){
     var request_body={
 
         "recipient":{
-          "id":sender_psid;
+          "id":sender_psid
         },
         "message":{
 
@@ -417,7 +418,7 @@ function sendImage(sender_psid,image_url){
     var request_body={
 
         "recipient":{
-          "id":sender_psid;
+          "id":sender_psid
         },
         "message":{
 
@@ -438,7 +439,7 @@ function sendImage(sender_psid,image_url){
 function sendSocialMediaQuickReply(sender_psid){
     var request_body={
         "recipient":{
-            "id":sender_psid;
+            "id":sender_psid
         },
         "message":{
             "text":"My Social media profiles. Meet me there dude. :)",
@@ -447,17 +448,17 @@ function sendSocialMediaQuickReply(sender_psid){
                   "content-type":"text",
                   "title":"facebook",
                   "payload":"facebook"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"twitter",
                   "payload":"twitter"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"instagram",
                   "payload":"instagram"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"linkedin",
@@ -476,7 +477,7 @@ function sendSocialMediaQuickReply(sender_psid){
 function sendCodingProfilesQuickReply(sender_psid){
     var request_body={
         "recipient":{
-            "id":sender_psid;
+            "id":sender_psid
         },
         "message":{
             "text":"My Social media profiles. Meet me there dude. :)",
@@ -485,22 +486,22 @@ function sendCodingProfilesQuickReply(sender_psid){
                   "content-type":"text",
                   "title":"codeforces",
                   "payload":"cf"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"codechef",
                   "payload":"cc"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"hackerearth",
                   "payload":"he"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"hackerrank",
                   "payload":"hr"
-                }
+                },
                 {
                   "content-type":"text",
                   "title":"github",
