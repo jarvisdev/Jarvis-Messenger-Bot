@@ -579,16 +579,13 @@ function sendCodingProfilesQuickReply(sender_psid){
 //--------------------------------------------------------------------------
 //spotify music search
 
-function getMusic(query)
+function getMusic(sender_psid,query)
 {
-    spotify.search({ type: 'track', query: 'despacito' }, function(err, data) {
+    spotify.search({ type: 'track', query: query ,limit:3}, function(err, data) {
         if ( err ) {
             console.log('Error occurred: ' + err);
             return;
         }
-     
-        // Do something with 'data' 
-        res.write(data);
         console.log(data);
     });
 }
