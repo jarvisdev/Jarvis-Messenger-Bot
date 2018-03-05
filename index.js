@@ -218,7 +218,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                 {
                 "title": "Milan's Facebook Profile",
                 "subtitle": "Be my friend buddy :)",
-                "image_url": "/images/mypic.jpg",
+                "image_url": "./public/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -231,7 +231,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Twitter Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "/images/mypic.jpg",
+                "image_url": "./public/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -244,7 +244,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Instagram Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "/images/mypic.jpg",
+                "image_url": "./public/images/mypic.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -257,7 +257,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's LinkedIn Profile",
                 "subtitle": "Connect With Me :) ",
-                "image_url": "/images/mypic2.jpg",
+                "image_url": "./public/images/mypic2.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -270,7 +270,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Quora Profile",
                 "subtitle": "Ask me :)",
-                "image_url": "/images/mypic3.jpg",
+                "image_url": "./public/images/mypic3.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
