@@ -174,8 +174,18 @@ function handleMessage(event) {
       }
   }
   else if(received_message.attachments){
-        var nice="oh wow! that is nice.";
-        sendTextMessage(sender_psid,nice);
+        var type=received_message.attachments.type;
+
+        if(type=="location")
+        {
+            var coming="I have notified Milan.If he is not busy then he'll be there soon.";
+            sendTextMessage(sender_psid,coming);
+        }
+        else
+        {
+            var nice="oh wow! that is nice.";
+            sendTextMessage(sender_psid,nice);
+        }
   }
 
     
@@ -206,23 +216,16 @@ function handlePostback(event) {
             sendTextMessage(sender_psid,instructions);
       }
 
-      else if(payload=='spotify_payload')
+      else if(payload=='in_trouble')
       {
-            // typingIndicatorEnable(sender_psid);
-            // setTimeout(typingIndicatorDisable,4000,sender_psid);
-            var instructions="Hey do you like music? Milan is a huge fan of music.He is also a good singer. He has told me to help you to find your favourite music on Spotify.Spotify is a famous online music database. So all you have to do is So all you have to do is to type *music your_search_query* for example *music despacito* .I will provide you top 3 results for your query.So go give it a try...";
-            sendTextMessage(sender_psid,instructions);
+            sendLocationQuickReply(sender_psid);
       }
       else if(payload=='social_profiles')
       {
-            // typingIndicatorEnable(sender_psid);
-            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             sendGenericSocialTemplateCarousel(sender_psid);
       }
       else if(payload=='coding_profiles')
       {
-            // typingIndicatorEnable(sender_psid);
-            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             sendGenericCodingTemplateCarousel(sender_psid);
       }
       else
@@ -497,6 +500,28 @@ function sendImage(sender_psid,image_url){
 
     callSendAPI(request_body);
 }
+//--------------------------------------------------------------------------
+//send location quick reply
+
+function sendLocationQuickReply(sender_psid)
+{
+    var request_body = {
+        "recipient": {
+          "id": sender_psid
+        },
+        "message": {
+          "text":"In trouble?or giving a treat. send the location to Milan quickly",
+            "quick_replies":[
+              {
+                "content_type":"location",
+              }
+            ]
+        }
+    };
+
+    callSendAPI(request_body); 
+}
+
 //---------------------------------------------------------------------------
 //send social media quick reply
 
