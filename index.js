@@ -657,13 +657,13 @@ function getYoutubeVideo(sender_psid,query)
                     ]
                   }
                 }
-              }
+              };
 
               var request_body = {
               "recipient": {
                 "id": sender_psid
               },
-              "message": response
+              "message": resp
             };
 
             callSendAPI(request_body); 
