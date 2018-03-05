@@ -1,8 +1,11 @@
 'use strict';
-const PAGE_ACCESS_TOKEN=process.env.PAGE_ACCESS_TOKEN;;
+const PAGE_ACCESS_TOKEN=process.env.PAGE_ACCESS_TOKEN;
+const YOUTUBE_API_KEY=process.env.YOUTUBE_API_KEY;
 // Imports dependencies and set up http server
 
 const request = require('request');
+const youtube = require('youtube-search');
+const spotify=require('spotify');
 const
   express = require('express'),
   bodyParser = require('body-parser'),
@@ -10,6 +13,11 @@ const
   app.use(bodyParser.urlencoded({
     extended:true
   }));
+
+var youtubeopts={
+    maxResults:3,
+    key:YOUTUBE_API_KEY
+};
 
 //app.use(express.static(__dirname+'/public'));
 //---------------------------------------------------------------
@@ -100,79 +108,129 @@ app.post('/webhook', (req, res) => {
 function handleMessage(event) {
   var sender_psid=event.sender.id;
   var received_message=event.message;
-  console.log(JSON.stringify(received_message));
-	var response;
+  //console.log(JSON.stringify(received_message));
+    var response;
 
   // Check if the message contains text
   if (received_message.text) {  
 
       var text=received_message.text;
-      // Create the payload for a basic text message
-      typingIndicatorEnable(sender_psid);
-      setTimeout(typingIndicatorDisable,4000,sender_psid);
-      sendGenericCodingTemplateCarousel(sender_psid);
-      sendGenericSocialTemplateCarousel(sender_psid);
+      text=text.trim();
+      if(text.match(/^(youtube)\s.+/i))
+      {
+            var query=text.slice(7).trim();
+            getYoutubeVideo(sender_psid,query);
+      }
+      else if(text.match(/^(music)\s.+/i))
+      {
+            var query=text.slice(5).trim();
+            getMusic(sender_psid,query);
+      }
+      else if(text.match(/^(hey|hi+|hola|hello|hel+o|)\s.*/i))
+      {
+            var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
+            sendImage(sender_psid,gifurl);     
+      }
+      else if(text.match(/^(whats|what's|wass|what is)\s*(your|ur)\s*name.*/i))
+      {
+            var name="I am Jarvis currently working as Milan's bot. 😎 ";
+            sendTextMessage(sender_psid,name);
+      }
+      else if(text.match(/^(how\s*are\s*you|wass\s*up|whats\s*up|what's up|how you doin.*).*/i))
+      {
+            var fine="yeah I am fine as always 😇😃 ";
+            sendTextMessage(sender_psid,fine);
+      }
+      else if(text.match(/^(will\s*you\s*be\s*my\s*friend).*/i))
+      {
+            var sure="Yeah. I and Milan would love to be your friend.🙂";
+            sendTextMessage(sender_psid,sure);
+      }
+      else if(text.match(/^(do\s*you\s*like\s*me).*/i))
+      {
+            var yess="yass I like you very much. I enjoy your company always.😊 ";
+            sendTextMessage(sender_psid,yess);
+      }
+      else if(text.match(/^(.*(i\s*(luv|love|like)\s*(u+|you|yu))).*/i))
+      {
+            var love="awwww...thats sweet☺❤!!I love you too. I love everyone.I and Milan would like to meet you."
+            sendTextMessage(sender_psid,love);
+      }
+      else if(text.match(/.*(b+ye+|see\s*(u+|you|yu)\s*(again|so+n|later)|ciao|brb|ttyl).*$/i))
+      {
+            var byee="oh its too soon😟...okk no problem.It was nice to be with you.Ciao soon.Jai shree krishna 🙌👐"
+            sendTextMessage(sender_psid,byee);
+            sendImage(sender_psid,"https://media.giphy.com/media/JDTsqJhvLOq9G/giphy.gif");
+      }
+      else
+      {
+            var randomreplies=["I don't get you!!","did you mean %%&%$%^$^?","try out other questions","Did you speak it in english?",":/","-_-","😶😵","try youtube despacito","try music despacito","you can always send me your location when you are in trouble or when you are giving a treat"];
+            var ind=Math.floor(Math.random()*randomreplies.length);
+            sendTextMessage(sender_psid,randomreplies[ind]);
+      }
   }
   else if(received_message.attachments){
+        var nice="oh wow! that is nice.";
+        sendTextMessage(sender_psid,nice);
+  }
 
-    let attachment_url=received_message.attachments[0].payload.url;
-
-      response = {
-        "attachment": {
-
-          "type": "template",
-
-          "payload": {
-
-              "template_type": "generic",
-              "elements": [{
-              "title": "Is this the right picture?",
-              "subtitle": "Tap a button to answer.",
-              "image_url": attachment_url,
-              "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Yes!",
-                  "payload": "yes",
-                },
-                {
-                  "type": "postback",
-                  "title": "No!",
-                  "payload": "no",
-                }
-              ],
-            }]
-          }
-        }
-      }
-    }; 
-      
-    sendGenericTemplate(sender_psid,response);  
+    
 }  
 
 //-------------------------------------------------------------------------------------------
 // Handles messaging_postbacks events
 function handlePostback(event) {
-  var sender_psid=event.sender.id;
-  var received_postback=event.postback;
-    let response;
-    let payload=received_postback.payload;
+      var sender_psid=event.sender.id;
+      var received_postback=event.postback;
+      var payload=received_postback.payload;
 
-    if(payload==='yes'){
-      response={'text':'thanx!!'};
-    }
-    else if(payload==='no'){
-      response={'text':'oops! send it again'};
-    }
+      if(payload=='get_started_payload')
+      {
+          var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
+          sendImage(sender_psid,gifurl);
+          typingIndicatorEnable(sender_psid);
+          setTimeout(typingIndicatorDisable,4000,sender_psid);
+          var greettext="Hello I am Milan's Messenger bot. You know what Milan is a simple but good guy.He is kind of studious and nerdy guy. You can see his social and academic profiles here. Also Milan has configured me in such a way that I can provide you some amazing stuff from *youtube* and *spotify* so tap the menu near the textbox and play with me. :) ";
+          sendTextMessage(sender_psid,greettext);
+      }
 
-    var request_body = {
-      "recipient": {
-        "id": sender_psid
-      },
-      "message": response
-    };
-    callSendAPI(request_body);
+      else if(payload=='youtube_payload')
+      {
+            typingIndicatorEnable(sender_psid);
+            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            var instructions="So do you like surfing on youtube? Milan uses youtube a lot and is a daily visitor of youtube.He has told me to help you to get videos from youtube according to your wish.So all you have to do is to type *youtube your_search_query* for example *youtube despacito* .I will provide you top 3 results for your query.So go give it a try...";
+            sendTextMessage(sender_psid,instructions);
+      }
+
+      else if(payload=='spotify_payload')
+      {
+            typingIndicatorEnable(sender_psid);
+            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            var instructions="Hey do you like music? Milan is a huge fan of music.He is also a good singer. He has told me to help you to find your favourite music on Spotify.Spotify is a famous online music database. So all you have to do is So all you have to do is to type *music your_search_query* for example *music despacito* .I will provide you top 3 results for your query.So go give it a try...";
+            sendTextMessage(sender_psid,instructions);
+      }
+      else if(payload=='social_profiles')
+      {
+            typingIndicatorEnable(sender_psid);
+            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            sendGenericSocialTemplateCarousel(sender_psid);
+      }
+      else if(payload=='coding_profiles')
+      {
+            typingIndicatorEnable(sender_psid);
+            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            sendGenericCodingTemplateCarousel(sender_psid);
+      }
+      else
+      {
+            sendTextMessage(sender_psid,"You sent something that is not recognisable");
+      }
+
 }
+
+// ____________________
+//|helper functions    |
+//|____________________|
 
 //--------------------------------------------------------------------------
 //send a text message
@@ -513,6 +571,31 @@ function sendCodingProfilesQuickReply(sender_psid){
         }
     };
     callSendAPI(request_body);
+}
+//--------------------------------------------------------------------------
+//spotify music search
+
+function getMusic(query)
+{
+    // spotify.search({type:'track '})
+    //do nothing
+}
+
+//---------------------------------------------------------------------------
+//youtube video search
+
+function getYoutubeVideo(sender_psid,query)
+{
+    search(query,youtubeopts,function(err,response){
+        if(err)
+        {
+            console.log("error while getting video: "+err);
+        }
+        else
+        {
+            //do nothing   
+        }
+    });
 }
 
 //---------------------------------------------------------------------------
