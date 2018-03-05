@@ -188,37 +188,37 @@ function handlePostback(event) {
       {
           var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
           sendImage(sender_psid,gifurl);
-          typingIndicatorEnable(sender_psid);
-          setTimeout(typingIndicatorDisable,4000,sender_psid);
+          // typingIndicatorEnable(sender_psid);
+          // setTimeout(typingIndicatorDisable,4000,sender_psid);
           var greettext="Hello I am Milan's Messenger bot. You know what Milan is a simple but good guy.He is kind of studious and nerdy guy. You can see his social and academic profiles here. Also Milan has configured me in such a way that I can provide you some amazing stuff from *youtube* and *spotify* so tap the menu near the textbox and play with me. :) ";
           sendTextMessage(sender_psid,greettext);
       }
 
       else if(payload=='youtube_payload')
       {
-            typingIndicatorEnable(sender_psid);
-            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            // typingIndicatorEnable(sender_psid);
+            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             var instructions="So do you like surfing on youtube? Milan uses youtube a lot and is a daily visitor of youtube.He has told me to help you to get videos from youtube according to your wish.So all you have to do is to type *youtube your_search_query* for example *youtube despacito* .I will provide you top 3 results for your query.So go give it a try...";
             sendTextMessage(sender_psid,instructions);
       }
 
       else if(payload=='spotify_payload')
       {
-            typingIndicatorEnable(sender_psid);
-            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            // typingIndicatorEnable(sender_psid);
+            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             var instructions="Hey do you like music? Milan is a huge fan of music.He is also a good singer. He has told me to help you to find your favourite music on Spotify.Spotify is a famous online music database. So all you have to do is So all you have to do is to type *music your_search_query* for example *music despacito* .I will provide you top 3 results for your query.So go give it a try...";
             sendTextMessage(sender_psid,instructions);
       }
       else if(payload=='social_profiles')
       {
-            typingIndicatorEnable(sender_psid);
-            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            // typingIndicatorEnable(sender_psid);
+            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             sendGenericSocialTemplateCarousel(sender_psid);
       }
       else if(payload=='coding_profiles')
       {
-            typingIndicatorEnable(sender_psid);
-            setTimeout(typingIndicatorDisable,4000,sender_psid);
+            // typingIndicatorEnable(sender_psid);
+            // setTimeout(typingIndicatorDisable,4000,sender_psid);
             sendGenericCodingTemplateCarousel(sender_psid);
       }
       else
