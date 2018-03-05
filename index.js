@@ -111,6 +111,7 @@ function handleMessage(event) {
       typingIndicatorEnable(sender_psid);
       setTimeout(typingIndicatorDisable,4000,sender_psid);
       sendGenericCodingTemplateCarousel(sender_psid);
+      sendGenericSocialTemplateCarousel(sender_psid);
   }
   else if(received_message.attachments){
 
