@@ -4,7 +4,7 @@ const YOUTUBE_API_KEY=process.env.YOUTUBE_API_KEY;
 // Imports dependencies and set up http server
 
 const request = require('request');
-const youtube = require('youtube-search');
+const search = require('youtube-search');
 const spotify=require('spotify');
 const
   express = require('express'),
@@ -126,19 +126,19 @@ function handleMessage(event) {
             var query=text.slice(5).trim();
             getMusic(sender_psid,query);
       }
-      else if(text.match(/^(hey|hi+|hola|hello|hel+o|)\s.*/i))
+      else if(text.match(/^(hey|hi+|hola|hello|hel+o|)\s*.*/i))
       {
             var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
             sendImage(sender_psid,gifurl);    
             var hellomsg="Hello there. Its me Jarvis Milan's Messenger bot.";
             sendTextMessage(sender_psid,hellomsg); 
       }
-      else if(text.match(/^(whats|what's|wass|what is)\s*(your|ur)\s*name.*/i))
+      else if(text.match(/^(whats|what's|wass+|what is)\s*(your|ur)\s*name.*/i))
       {
             var name="I am Jarvis currently working as Milan's bot. 😎 ";
             sendTextMessage(sender_psid,name);
       }
-      else if(text.match(/^(how\s*are\s*you|wass\s*up|whats\s*up|what's up|how you doin.*).*/i))
+      else if(text.match(/^(how\s*are\s*you|wass+\s*up|whats\s*up|what's up|how\s*you\s*doin.*).*/i))
       {
             var fine="yeah I am fine as always 😇😃 ";
             sendTextMessage(sender_psid,fine);
@@ -153,14 +153,14 @@ function handleMessage(event) {
             var yess="yass I like you very much. I enjoy your company always.😊 ";
             sendTextMessage(sender_psid,yess);
       }
-      else if(text.match(/^(.*(i\s*(luv|love|like)\s*(u+|you|yu))).*/i))
+      else if(text.match(/^(.*(i\s*(luv|love|like)\s*(u+|you|yu|uh))).*/i))
       {
             var lovegif="https://media.giphy.com/media/l39765g6zcASQXGMg/giphy.gif";
             sendImage(sender_psid,lovegif);
             var love="awwww...thats sweet☺❤!!I love you too. I love everyone.I and Milan would like to meet you."
             sendTextMessage(sender_psid,love);
       }
-      else if(text.match(/.*(b+ye+|see\s*(u+|you|yu)\s*(again|so+n|later)|ciao|brb|ttyl).*$/i))
+      else if(text.match(/.*(b+ye+|see\s*(u+|you|yu)\s*(again|so+n|later)|ciao\s*soon|brb|ttyl).*$/i))
       {
             var byee="oh its too soon😟...okk no problem.It was nice to be with you.Ciao soon.Jai shree krishna 🙌👐"
             sendTextMessage(sender_psid,byee);
@@ -581,8 +581,16 @@ function sendCodingProfilesQuickReply(sender_psid){
 
 function getMusic(query)
 {
-    // spotify.search({type:'track '})
-    //do nothing
+    spotify.search({ type: 'track', query: 'despacito' }, function(err, data) {
+        if ( err ) {
+            console.log('Error occurred: ' + err);
+            return;
+        }
+     
+        // Do something with 'data' 
+        res.write(data);
+        console.log(data);
+    });
 }
 
 //---------------------------------------------------------------------------
@@ -597,6 +605,7 @@ function getYoutubeVideo(sender_psid,query)
         }
         else
         {
+            console.log(response);
             //do nothing   
         }
     });
