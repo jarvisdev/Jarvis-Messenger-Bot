@@ -11,7 +11,7 @@ const
     extended:true
   }));
 
-app.use(express.static(__dirname+'/public'));
+//app.use(express.static(__dirname+'/public'));
 //---------------------------------------------------------------
 //some real quick stuff
 
@@ -108,8 +108,8 @@ function handleMessage(event) {
 
       var text=received_message.text;
       // Create the payload for a basic text message
-      //typingIndicatorEnable(sender_psid);
-      //setTimeout(typingIndicatorDisable,4000,sender_psid);
+      typingIndicatorEnable(sender_psid);
+      setTimeout(typingIndicatorDisable,4000,sender_psid);
       sendGenericCodingTemplateCarousel(sender_psid);
   }
   else if(received_message.attachments){
@@ -218,7 +218,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
                 {
                 "title": "Milan's Facebook Profile",
                 "subtitle": "Be my friend buddy :)",
-                "image_url": "./public/images/mypic.jpg",
+                "image_url": "https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -231,7 +231,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Twitter Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "./public/images/mypic.jpg",
+                "image_url": "https://patriciaannbridewell.files.wordpress.com/2014/04/official-twitter-logo-tile.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -244,7 +244,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Instagram Profile",
                 "subtitle": "Follow Me :P",
-                "image_url": "./public/images/mypic.jpg",
+                "image_url": "https://www.seeklogo.net/wp-content/uploads/2016/05/instagram-logo-vector-download.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -257,7 +257,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's LinkedIn Profile",
                 "subtitle": "Connect With Me :) ",
-                "image_url": "./public/images/mypic2.jpg",
+                "image_url": "http://1000logos.net/wp-content/uploads/2017/03/Color-of-the-LinkedIn-Logo.jpg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -270,7 +270,7 @@ function sendGenericSocialTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Quora Profile",
                 "subtitle": "Ask me :)",
-                "image_url": "./public/images/mypic3.jpg",
+                "image_url": "http://image.flaticon.com/icons/png/512/185/185976.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -311,7 +311,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
                 {
                 "title": "Milan's Codeforces Profile",
                 "subtitle": "Codeforces is Love",
-                "image_url": "https://drive.google.com/file/d/1bYSZn1cHGNaDAM6t7X0Ts-155NIGAzQk/view?usp=sharing",
+                "image_url": "https://www.ime.usp.br/~arcjr/image/codeforces.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -324,7 +324,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Codechef Profile",
                 "subtitle": "wanna be red :P",
-                "image_url": "https://drive.google.com/file/d/19loH9A38cJX1gQHY0jWsjZlYIh-qg8ZQ/view?usp=sharing",
+                "image_url": "https://pbs.twimg.com/profile_images/470882849885667329/X48adYnt.jpeg",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -337,7 +337,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
               {
                 "title": "Milan's hackerearth Profile",
                 "subtitle": "Fan of CodeMonk",
-                "image_url": "https://drive.google.com/file/d/1vmtmU5P2ajls3o1rIa7aEgwpHzu0FPFz/view?usp=sharing",
+                "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/HackerEarth_logo.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -350,7 +350,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Hackerrank Profile",
                 "subtitle": "I started my coding journey here",
-                "image_url": "https://drive.google.com/file/d/1M0NyzqpLdZ08dGjdpJn_ffrWrtjNyp3x/view?usp=sharing",
+                "image_url": "http://www.iamwire.com/wp-content/uploads/2014/06/hackerrank_g7yq8.png",
                 "buttons": [
                   {
                     "type": "web_url",
@@ -363,7 +363,7 @@ function sendGenericCodingTemplateCarousel(sender_psid){
               {
                 "title": "Milan's Github Profile",
                 "subtitle": "My development stuff",
-                "image_url": "https://drive.google.com/file/d/1ZpvSrFx2dNiSi5cDD3Wj-sHorv7P913K/view?usp=sharing",
+                "image_url": "https://major.io/wp-content/uploads/2014/08/github.png",
                 "buttons": [
                   {
                     "type": "web_url",
