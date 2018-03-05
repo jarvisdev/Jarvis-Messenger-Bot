@@ -239,13 +239,13 @@ function handlePostback(event) {
 //--------------------------------------------------------------------------
 //send a text message
 
-function sendTextMessage(sender_psid,text){
+function sendTextMessage(sender_psid,msgtext){
 
   var request_body = {
       "recipient": {
         "id": sender_psid
       },
-      {"message": text}
+      "message":{"text":msgtext}
     };
   callSendAPI(request_body);
 
