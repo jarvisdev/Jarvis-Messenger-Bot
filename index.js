@@ -168,7 +168,7 @@ function handleMessage(event) {
       }
       else
       {
-            var randomreplies=["I don't get you!!","did you mean %%&%$%^$^?","try out other questions","Did you speak it in english?",":/","-_-","😶😵","try youtube despacito","try music despacito","you can always send me your location when you are in trouble or when you are giving a treat"];
+            var randomreplies=["I don't get you!!","did you mean %%&%$%^$^?","try out other questions","Did you speak it in english?",":/","-_-","😶😵","try youtube despacito","you can always send Milan your location when you are in trouble or when you are giving a treat","you are confusing me. -_-"];
             var ind=Math.floor(Math.random()*randomreplies.length);
             sendTextMessage(sender_psid,randomreplies[ind]);
       }
@@ -204,7 +204,7 @@ function handlePostback(event) {
           sendImage(sender_psid,gifurl);
           // typingIndicatorEnable(sender_psid);
           // setTimeout(typingIndicatorDisable,4000,sender_psid);
-          var greettext="Hello I am Milan's Messenger bot. You know what Milan is a simple but good guy.He is kind of studious and nerdy guy. You can see his social and academic profiles here. Also Milan has configured me in such a way that I can provide you some amazing stuff from *youtube* and *spotify* so tap the menu near the textbox and play with me. :) ";
+          var greettext="Hello I am Milan's Messenger bot. You know what Milan is a simple but good guy.He is kind of studious and nerdy guy. You can see his social and academic profiles here. Also Milan has configured me in such a way that I can provide you some amazing stuff from *youtube* so tap the menu near the textbox and play with me. :) ";
           sendTextMessage(sender_psid,greettext);
       }
 
@@ -255,19 +255,7 @@ function sendTextMessage(sender_psid,msgtext){
 }
 
 //--------------------------------------------------------------------------
-//send a generic template
-
-function sendGenericTemplate(sender_psid,response){
-
-  var request_body = {
-      "recipient": {
-        "id": sender_psid
-      },
-      "message": response
-    };
-  callSendAPI(request_body);
-
-}
+//send social profiles and coding profiles generic templates
 
 function sendGenericSocialTemplateCarousel(sender_psid){
 
@@ -454,30 +442,6 @@ function sendGenericCodingTemplateCarousel(sender_psid){
     callSendAPI(request_body);
 }
 
-
-//---------------------------------------------------------------------------
-//send an video
-
-function sendVideo(sender_psid,video_url){
-    var request_body={
-
-        "recipient":{
-          "id":sender_psid
-        },
-        "message":{
-
-            "attachment":{
-              "type":"video",
-              "payload":{
-                "url":video_url
-              }
-            }
-        }
-    };
-
-    callSendAPI(request_body);
-}
-
 //---------------------------------------------------------------------------
 //send an image
 
@@ -522,98 +486,6 @@ function sendLocationQuickReply(sender_psid)
     callSendAPI(request_body); 
 }
 
-//---------------------------------------------------------------------------
-//send social media quick reply
-
-function sendSocialMediaQuickReply(sender_psid){
-    var request_body={
-        "recipient":{
-            "id":sender_psid
-        },
-        "message":{
-            "text":"My Social media profiles. Meet me there dude. :)",
-            "quick_replies":[
-                {
-                  "content-type":"text",
-                  "title":"facebook",
-                  "payload":"facebook"
-                },
-                {
-                  "content-type":"text",
-                  "title":"twitter",
-                  "payload":"twitter"
-                },
-                {
-                  "content-type":"text",
-                  "title":"instagram",
-                  "payload":"instagram"
-                },
-                {
-                  "content-type":"text",
-                  "title":"linkedin",
-                  "payload":"linkedin"
-                }
-            ]
-        }
-    };
-
-    callSendAPI(request_body);
-}
-
-//---------------------------------------------------------------------------
-//send coding profiles quick reply
-
-function sendCodingProfilesQuickReply(sender_psid){
-    var request_body={
-        "recipient":{
-            "id":sender_psid
-        },
-        "message":{
-            "text":"My Social media profiles. Meet me there dude. :)",
-            "quick_replies":[
-                {
-                  "content-type":"text",
-                  "title":"codeforces",
-                  "payload":"cf"
-                },
-                {
-                  "content-type":"text",
-                  "title":"codechef",
-                  "payload":"cc"
-                },
-                {
-                  "content-type":"text",
-                  "title":"hackerearth",
-                  "payload":"he"
-                },
-                {
-                  "content-type":"text",
-                  "title":"hackerrank",
-                  "payload":"hr"
-                },
-                {
-                  "content-type":"text",
-                  "title":"github",
-                  "payload":"gh"
-                }
-            ]
-        }
-    };
-    callSendAPI(request_body);
-}
-//--------------------------------------------------------------------------
-//spotify music search
-
-function getMusic(sender_psid,query)
-{
-    spotify.search({ type: 'track', query: query ,limit:3}, function(err, data) {
-        if ( err ) {
-            console.log('Error occurred: ' + err);
-            return;
-        }
-        console.log(data);
-    });
-}
 
 //---------------------------------------------------------------------------
 //youtube video search
@@ -691,30 +563,6 @@ function getYoutubeVideo(sender_psid,query)
             callSendAPI(request_body); 
         }
     });
-}
-
-//---------------------------------------------------------------------------
-//for enabling typing indicator
-function typingIndicatorEnable(sender_psid){
-
-    var request_body = {
-        "recipient": {
-          "id": sender_psid
-        },
-        "sender_action":"typing_on"
-    };
-    callSendAPI(request_body);
-}
-//for disabling typing indicator
-function typingIndicatorDisable(sender_psid){
-
-    var request_body = {
-        "recipient": {
-          "id": sender_psid
-        },
-        "sender_action":"typing_off"
-    };
-    callSendAPI(request_body);
 }
 
 //--------------------------------------------------------------
