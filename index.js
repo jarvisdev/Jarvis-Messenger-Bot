@@ -129,7 +129,9 @@ function handleMessage(event) {
       else if(text.match(/^(hey|hi+|hola|hello|hel+o|)\s.*/i))
       {
             var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
-            sendImage(sender_psid,gifurl);     
+            sendImage(sender_psid,gifurl);    
+            var hellomsg="Hello there. Its me Jarvis Milan's Messenger bot.";
+            sendTextMessage(sender_psid,hellomsg); 
       }
       else if(text.match(/^(whats|what's|wass|what is)\s*(your|ur)\s*name.*/i))
       {
@@ -153,6 +155,8 @@ function handleMessage(event) {
       }
       else if(text.match(/^(.*(i\s*(luv|love|like)\s*(u+|you|yu))).*/i))
       {
+            var lovegif="https://media.giphy.com/media/l39765g6zcASQXGMg/giphy.gif";
+            sendImage(sender_psid,lovegif);
             var love="awwww...thats sweet☺❤!!I love you too. I love everyone.I and Milan would like to meet you."
             sendTextMessage(sender_psid,love);
       }
@@ -241,7 +245,7 @@ function sendTextMessage(sender_psid,text){
       "recipient": {
         "id": sender_psid
       },
-      "message": text
+      {"message": text}
     };
   callSendAPI(request_body);
 
