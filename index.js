@@ -174,9 +174,9 @@ function handleMessage(event) {
       }
   }
   else if(received_message.attachments){
-        var type=received_message.attachments.type;
+        var attach_type=received_message.attachments[0].type;
 
-        if(type=="location")
+        if(attach_type=="location")
         {
             var coming="I have notified Milan.If he is not busy then he'll be there soon.";
             sendTextMessage(sender_psid,coming);
