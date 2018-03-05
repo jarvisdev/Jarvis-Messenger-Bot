@@ -121,12 +121,7 @@ function handleMessage(event) {
             var query=text.slice(7).trim();
             getYoutubeVideo(sender_psid,query);
       }
-      else if(text.match(/^(music)\s.+/i))
-      {
-            var query=text.slice(5).trim();
-            getMusic(sender_psid,query);
-      }
-      else if(text.match(/^(hey|hi+|hola|hello|hel+o|)\s*.*/i))
+      else if(text.match(/^(hey|hi+|hola|hello|hel+o)\s*.*/i))
       {
             var gifurl="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif";
             sendImage(sender_psid,gifurl);    
