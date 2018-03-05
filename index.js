@@ -605,8 +605,68 @@ function getYoutubeVideo(sender_psid,query)
         }
         else
         {
-            console.log(response);
-            //do nothing   
+            
+            var resp = {
+                "attachment": {
+
+                  "type": "template",
+
+                  "payload": {
+
+                      "template_type": "generic",
+                      "elements": [
+
+                        {
+                        "title": response[0].title.substr(0,77)+"...",
+                        "subtitle": response[0].channelTitle.substr(0,79),
+                        "image_url": "https://www.seeklogo.net/wp-content/uploads/2016/06/YouTube-icon-400x400.png",
+                        "buttons": [
+                          {
+                            "type": "web_url",
+                            "title": "View Video",
+                            "url": response[0].link
+                          }
+                        ]
+                      },
+
+                      {
+                        "title": response[1].title.substr(0,77)+"...",
+                        "subtitle": response[1].channelTitle.substr(0,79),
+                        "image_url": "https://www.seeklogo.net/wp-content/uploads/2016/06/YouTube-icon-400x400.png",
+                        "buttons": [
+                          {
+                            "type": "web_url",
+                            "title": "View Video",
+                            "url": response[1].link
+                          }
+                        ]
+                      },
+
+                      {
+                        "title": response[2].title.substr(0,77)+"...",
+                        "subtitle": response[2].channelTitle.substr(0,79),
+                        "image_url": "https://www.seeklogo.net/wp-content/uploads/2016/06/YouTube-icon-400x400.png",
+                        "buttons": [
+                          {
+                            "type": "web_url",
+                            "title": "View Video",
+                            "url": response[2].link
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+
+              var request_body = {
+              "recipient": {
+                "id": sender_psid
+              },
+              "message": response
+            };
+
+            callSendAPI(request_body); 
         }
     });
 }
