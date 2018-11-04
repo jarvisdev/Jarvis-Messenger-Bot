@@ -10,7 +10,7 @@ A responsive and simple chatbot for messenger
 * The bot can show my social and academic profiles in form of a list of templates
 * The bot can search videos on youtube according to your query and return top 3 relavant results.For example if you try __*youtube despacito*__ then it will return top 3 relavant videos of the song despacito.
 * The bot has one facility named quick location.Using this amazing feature you can quickly send your current location to the bot.This feature maybe helpful when someone is in trouble want to send their location quickly.
-* Also the bot responds to the questions of the user.This feature is not applied using __NLP__.
+* Also the bot responds to the questions of user.This feature is not applied using __NLP__.
 
 ***
 ## Tools,Languages,Frameworks used: ##
